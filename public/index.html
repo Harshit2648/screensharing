@@ -276,6 +276,7 @@ button{
 
   async function startScreenShare(){
     try{
+      stopScreenShare()
       localStream = await navigator.mediaDevices.getDisplayMedia({ video:true, audio:true,controls:false });
       startBtn.disabled = true; stopBtn.disabled = false;
       socket.emit('start-sharing');
