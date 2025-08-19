@@ -26,7 +26,6 @@ io.on('connection', (socket) => {
     const u = users.get(socket.id);
     if (u) u.isSharing = true;
     io.emit('users-update', Array.from(users.values()));
-    // notify others to prompt viewer modal
     socket.broadcast.emit('user-started-sharing', socket.id);
   });
 
@@ -57,7 +56,10 @@ io.on('connection', (socket) => {
   });
 });
 
+// ---- Start server ----
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
-  console.log(`Screen sharing server running on http://localhost:${PORT}`);
+  console.log(`✅ Screen sharing server running on port ${PORT}`);
+  console.log(`👉 Node version: ${process.version}`);
+  console.log(`👉 Access at: http://localhost:${PORT} (local) or your Render URL`);
 });
