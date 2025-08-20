@@ -10,9 +10,9 @@ const io = socketIo(server, {
 });
 
 // serve static files
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.send("server is  running ")
 });
 
 const users = new Map(); // id -> { id, isSharing }
@@ -59,7 +59,7 @@ io.on('connection', (socket) => {
 // ---- Start server ----
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
-  console.log(`✅ Screen sharing server running on port ${PORT}`);
-  console.log(`👉 Node version: ${process.version}`);
-  console.log(`👉 Access at: http://localhost:${PORT} (local) or your Render URL`);
+  console.log(` Screen sharing server running on port ${PORT}`);
+  console.log(` Node version: ${process.version}`);
+  console.log(` Access at: http://localhost:${PORT} (local) or your Render URL`);
 });
